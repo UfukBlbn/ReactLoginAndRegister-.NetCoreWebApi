@@ -65,7 +65,9 @@ namespace IdentityServerTokenAuth.Controllers
                 LastName = registerVM.LastName,
                 Email = registerVM.EmailAddress,
                 UserName = registerVM.UserName,
-                SecurityStamp = Guid.NewGuid().ToString()
+                SecurityStamp = Guid.NewGuid().ToString(),
+                userRole=registerVM.Role
+               
             };
             var result = await _userManager.CreateAsync(newUser, registerVM.Password);
          
@@ -83,6 +85,7 @@ namespace IdentityServerTokenAuth.Controllers
                     default:
                         break;
                 }
+                
                 return BaseResponse<ApplicationUser>.returnSuccess(newUser,$"Welcome {newUser.FirstName}");
             }
             else
@@ -108,16 +111,21 @@ namespace IdentityServerTokenAuth.Controllers
             }
 
             var userExists = await _userManager.FindByEmailAsync(loginVM.EmailAddress);
-    
+            var roles = await _roleManager.Roles.ToListAsync();
             if (userExists != null && await _userManager.CheckPasswordAsync(userExists,loginVM.Password))
             {
                 var tokenValue = await GenerateJWTTokenAsync(userExists,null);
-          
-               return new BaseResponse<ApplicationUser>
-                    {
-                        authResult = tokenValue,
-                        StatusCode=System.Net.HttpStatusCode.OK
-                    };
+                var response = new BaseResponse<ApplicationUser>();
+                response.authResult = tokenValue;
+                response.StatusCode = System.Net.HttpStatusCode.OK;
+                response.role = userExists.userRole;
+                foreach (var role in roles)
+                {
+
+                    response.userRoles.Add(role.Name);
+                  
+                }
+                return response;
 
                
              

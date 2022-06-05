@@ -13,7 +13,12 @@ namespace IdentityServerTokenAuth.Data.ViewModels
         public string Message { get; set; }
         public HttpStatusCode StatusCode { get; set; }
         public AuthResultVM authResult { get; set; }
-
+        public string role { get; set; }
+        public List<string> userRoles { get; set; }
+        public BaseResponse()
+        {
+            userRoles = new List<string>();
+        }
         public static BaseResponse<T> returnSuccess(T data,string message)
         {
             return new BaseResponse<T>
