@@ -49,7 +49,9 @@ const Login = () => {
             //console.log(JSON.stringify(response));
             const accessToken = response.data.authResult.token;
             const userRole = response.data.userRoles;
-            setAuth({ user, pwd, userRole, accessToken });
+            const refreshToken = response.data.authResult.refreshToken;
+
+            setAuth({ user, pwd, userRole, accessToken,refreshToken });
             setUser('');
             setPwd('');
             //navigate
