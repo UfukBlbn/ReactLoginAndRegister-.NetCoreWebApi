@@ -1,0 +1,1143 @@
+openapi: 3.0.0
+servers:
+  - url: //public.jetlink.swagger.io/v1
+    description: Api Documentation
+  - url: //app.jetlink.io/test
+    description: Jet Review Documentation
+info:
+  description: |
+    This is a API Documentation of Jetlink Company.
+    You can find out more about Jetlink API Services at
+    [https://github.com/jetlinkio](https://github.com/jetlinkio).
+    For this sample, you can use the api key `api-key` to test the authorization filters.
+
+    # Introduction
+    This API is documented in **OpenAPI format** and is based on
+    [Jetlink Samples](https://https://app.jetlink.io//) provided by [Jetlink](https://www.jetlink.io/) team.
+    It was **extended** to illustrate features of [generator-openapi-repo](https://github.com/jetlinkio))
+    tool. In addition to standard
+    OpenAPI syntax we use a few [vendor extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).
+
+    # OpenAPI Specification
+    This API is documented in **OpenAPI format** and is based on
+    [Jetlink Samples](https://https://app.jetlink.io//) provided by [Jetlink](https://www.jetlink.io/) team.
+    It was **extended** to illustrate features of [generator-openapi-repo](https://github.com/jetlinkio))
+    tool. In addition to standard
+    OpenAPI syntax we use a few [vendor extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).
+
+    # Cross-Origin Resource Sharing
+    This API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).
+    And that allows cross-domain communication from the browser.
+    All responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.
+
+    # Authentication
+
+    Petstore offers two forms of authentication:
+      - API Key
+      - OAuth2
+    OAuth2 - an open protocol to allow secure authorization in a simple
+    and standard method from web, mobile and desktop applications.
+
+    <SecurityDefinitions />
+
+  version: 1.0.0
+  title: Swagger Petstore
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    name: API Support
+    email: apiteam@swagger.io
+    url: https://github.com/Redocly/redoc
+  x-logo:
+    url: 'https://redocly.github.io/redoc/petstore-logo.png'
+    altText: Petstore logo
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+externalDocs:
+  description: Find out how to create Github repo for your OpenAPI spec.
+  url: 'https://github.com/Rebilly/generator-openapi-repo'
+tags:
+  - name: pet
+    description: Everything about your Pets
+  - name: store
+    description: Access to Petstore orders
+  - name: user
+    description: Operations about user
+  - name: pet_model
+    x-displayName: The Pet Model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/Pet" />
+  - name: store_model
+    x-displayName: The Order Model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/Order" exampleRef="#/components/examples/Order" showReadOnly={true} showWriteOnly={true} />
+x-tagGroups:
+  - name: General
+    tags:
+      - pet
+      - store
+  - name: User Management
+    tags:
+      - user
+  - name: Models
+    tags:
+      - pet_model
+      - store_model
+paths:
+  /JetReview/FeedbackListRequest :
+    post:
+      tags:
+        - JetRewiev Api Services
+      operationId: Feedback_GetFeedbackList
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: FeedbackListRequest
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/FeedbackListRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/FeedbackListResult'
+  /JetReview/GetInviteList:
+    post:
+      tags:
+        - JetRewiev Api Services
+      operationId: Invite_GetInviteList
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: filter
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/InviteListFilter'
+    description: With the Send Order endpoint we offer you, we aim to receive information such as the status of my current orders and their contents.
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Invite'
+  /JetReview/Invite/CreateInvitePerson:
+    post:
+      tags:
+        - JetRewiev Api Services
+      operationId: Invite_CreateInvitePerson
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: invitePersonBody
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/InvitePersonBody'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/InvitePersonResult'
+  /JetReview/Location/GetList:
+    get:
+      tags:
+        - JetRewiev Api Services
+      operationId: Location_GetList
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Location'
+  /JetReview/Message/GenerateSMSContent:
+    post:
+      tags:
+        - JetRewiev Api Services
+      operationId: Message_GenerateSMSContent
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: generateSMSBody
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/GenerateSMSBody'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GenerateSMSResult'
+  /JetReview/Message/SendSMS:
+    post:
+      tags:
+        - JetRewiev Api Services
+      operationId: Message_SendSMS
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: sendSMSBody
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/GenerateSMSBody'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/SendSMSResult'
+  /JetReview/Message/GenerateReferralSMSContent:
+    post:
+      tags:
+        - JetRewiev Api Services
+      operationId: Message_GenerateReferralSMSContent
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: generateReferralSMSBody
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/GenerateReferralSMSBody'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GenerateSMSResult'
+  /JetReview/Message/SendReferralSMS:
+    post:
+      tags:
+        - JetRewiev Api Services
+      operationId: Message_SendReferralSMS
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: sendReferralSMSBody
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/GenerateReferralSMSBody'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/SendSMSResult'
+  /JetReview/Orders/SendOrder:
+    post:
+      tags:
+        - JetRewiev Api Services
+      operationId: Orders_SendOrder
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: request
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/OrderRequestBody'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+  /JetReview/Orders/SendOrderUpdateStatus:
+    post:
+      tags:
+        - JetRewiev Api Services
+      operationId: Orders_SendOrderUpdateStatus
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: request
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/OrderUpdateRequestBody'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+  /JetReview/Review/GetReviewList:
+    post:
+      tags:
+        - JetRewiev Api Services
+      operationId: Review_GetReviewList
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: reviewListRequest
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ReviewListRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ReviewListResult'
+  /JetReview/Review/UpdateReviewStatus:
+    post:
+      tags:
+        - JetRewiev Api Services
+      operationId: Review_UpdateReviewStatus
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: reviewStatusRequest
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ReviewStatusRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ReviewStatusResponse'
+  /JetReview/Settings/GetReviewRequestTemplateListByCompany:
+    get:
+      tags:
+        - JetRewiev Api Services
+      operationId: Settings_GetReviewRequestTemplateListByCompany
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReviewRequestTemplate'
+  /JetReview/Settings/GetReviewRequestTemplateListByLocation:
+    get:
+      tags:
+        - JetRewiev Api Services
+      operationId: Settings_GetReviewRequestTemplateListByLocation
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: locationId
+          in: query
+          required: true
+          type: string
+        - name: locationCode
+          in: query
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReviewRequestTemplate'
+  /JetReview/Settings/GetReferralTemplateListByCompany:
+    get:
+      tags:
+        - JetRewiev Api Services
+      operationId: Settings_GetReferralTemplateListByCompany
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReferralTemplate'
+  /JetReview/Settings/GetReferralTemplateListByLocation:
+    get:
+      tags:
+        - JetRewiev Api Services
+      operationId: Settings_GetReferralTemplateListByLocation
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: locationId
+          in: query
+          required: true
+          type: string
+        - name: locationCode
+          in: query
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReferralTemplate'
+  /JetReview/Location/:
+    get:
+      tags:
+        - Jetlink Api Services
+      operationId: tes_test
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: BadRequest
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Location'
+  /JetReview/JVS/:
+    get:
+      tags:
+        - Jetlink JavaScript SDK
+      operationId: tes_testJVS
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: BadRequest
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Location'
+definitions:
+  FeedbackListRequest:
+    type: object
+    properties:
+      PageSize:
+        format: int32
+        type: integer
+      PageIndex:
+        format: int32
+        type: integer
+      FeedbackListFilter:
+        $ref: '#/definitions/FeedbackListFilter'
+  FeedbackListFilter:
+    type: object
+    properties:
+      FeedbackValueExists:
+        type: string
+      FeedbackStartDate:
+        format: int32
+        type: integer
+      FeedbackEndDate:
+        format: int32
+        type: integer
+      LocationId:
+        type: string
+      LocationCode:
+        type: string
+  FeedbackListResult:
+    type: object
+    properties:
+      TotalPageCount:
+        format: int32
+        type: integer
+      TotalFeedbackCount:
+        format: int32
+        type: integer
+      CurrentPageIndex:
+        format: int32
+        type: integer
+      CurrentPageSize:
+        format: int32
+        type: integer
+      FeedbackList:
+        type: array
+        items:
+          $ref: '#/definitions/Feedback'
+  Feedback:
+    type: object
+    properties:
+      FeedbackId:
+        type: string
+      LocationCode:
+        type: string
+      LocationName:
+        type: string
+      Rating:
+        format: int32
+        type: integer
+      InviteRating:
+        type: string
+      Comment:
+        type: string
+      IsContactRequested:
+        type: boolean
+      CustomerNameSurname:
+        type: string
+      CustomerPhone:
+        type: string
+      CustomerEmail:
+        type: string
+      FeedbackDate:
+        format: int32
+        type: integer
+      FeedbackCategoryOptionRatingList:
+        type: array
+        items:
+          $ref: '#/definitions/FeedbackCategoryOptionRating'
+      CustomFieldList:
+        type: array
+        items:
+          $ref: '#/definitions/CustomField'
+  FeedbackCategoryOptionRating:
+    type: object
+    properties:
+      ReviewCategoryOptionId:
+        type: string
+      Name:
+        type: string
+      Rating:
+        format: int32
+        type: integer
+  CustomField:
+    type: object
+    properties:
+      Key:
+        type: string
+      Value:
+        type: string
+  InviteListFilter:
+    type: object
+    properties:
+      ResultType:
+        type: string
+      RecordCount:
+        format: int32
+        type: integer
+      RecordStartDate:
+        format: int32
+        type: integer
+      RecordEndDate:
+        format: int32
+        type: integer
+  Invite:
+    type: object
+    properties:
+      InviteCode:
+        type: string
+      LocationName:
+        type: string
+      LocationCode:
+        type: string
+      SenderAgentId:
+        type: string
+      SenderAgentName:
+        type: string
+      NameSurname:
+        type: string
+      Phone:
+        type: string
+      Email:
+        type: string
+      MessageText:
+        type: string
+      InviteShortLink:
+        type: string
+      FirstClickDate:
+        format: int32
+        type: integer
+      LastClickDate:
+        format: int32
+        type: integer
+      FeedbackClickDate:
+        format: int32
+        type: integer
+      FeedbackClickType:
+        type: string
+      CustomFieldList:
+        type: array
+        items:
+          $ref: '#/definitions/CustomField'
+      CreateDate:
+        format: int32
+        type: integer
+  InvitePersonBody:
+    type: object
+    properties:
+      LocationId:
+        type: string
+      LocationCode:
+        type: string
+      CustomerNameSurname:
+        type: string
+      CustomerPhone:
+        type: string
+      Language:
+        type: string
+      ReviewRequestTemplateId:
+        type: string
+      ReviewRequestTemplateCode:
+        type: string
+      CustomFieldList:
+        type: array
+        items:
+          $ref: '#/definitions/CustomField'
+  InvitePersonResult:
+    type: object
+    properties:
+      InviteCode:
+        type: string
+      IsPersonCreated:
+        type: boolean
+      PersonCreateErrorMessage:
+        type: string
+      PersonCreateDate:
+        format: int32
+        type: integer
+      IsMessageSent:
+        type: boolean
+      MessageSentDate:
+        format: int32
+        type: integer
+      LocationId:
+        type: string
+      LocationName:
+        type: string
+      CustomerNameSurname:
+        type: string
+      CustomerPhone:
+        type: string
+      MessageContent:
+        type: string
+      ReviewLink:
+        type: string
+      Language:
+        type: string
+  Location:
+    type: object
+    properties:
+      LocationId:
+        type: string
+      LocationName:
+        type: string
+      LocationCode:
+        type: string
+      Latitude:
+        type: string
+      Longitude:
+        type: string
+      Address:
+        type: string
+      District:
+        type: string
+      City:
+        type: string
+      State:
+        type: string
+      Country:
+        type: string
+      PostalCode:
+        type: string
+      Phone:
+        type: string
+      ConnectedChannels:
+        type: array
+        items:
+          type: string
+      ChannelRatingList:
+        type: array
+        items:
+          $ref: '#/definitions/ChannelRating'
+      CreateDate:
+        format: int32
+        type: integer
+  ChannelRating:
+    type: object
+    properties:
+      ChannelName:
+        type: string
+      ChannelRatingValue:
+        type: string
+      ChannelReviewCount:
+        format: int32
+        type: integer
+  GenerateSMSBody:
+    type: object
+    properties:
+      LocationId:
+        type: string
+      LocationCode:
+        type: string
+      CustomerNameSurname:
+        type: string
+      CustomerPhone:
+        type: string
+      CustomerEmail:
+        type: string
+      Language:
+        type: string
+      ReviewRequestTemplateId:
+        type: string
+      ReviewRequestTemplateCode:
+        type: string
+      ReviewCategoryCode:
+        type: string
+      CustomFieldList:
+        type: array
+        items:
+          $ref: '#/definitions/CustomField'
+  GenerateSMSResult:
+    type: object
+    properties:
+      MessageId:
+        type: string
+      LocationId:
+        type: string
+      LocationName:
+        type: string
+      CustomerNameSurname:
+        type: string
+      CustomerPhone:
+        type: string
+      MessageContent:
+        type: string
+      Language:
+        type: string
+      ReviewLink:
+        type: string
+  SendSMSResult:
+    type: object
+    properties:
+      MessageId:
+        type: string
+      LocationId:
+        type: string
+      LocationName:
+        type: string
+      CustomerNameSurname:
+        type: string
+      CustomerPhone:
+        type: string
+      MessageContent:
+        type: string
+      ReviewLink:
+        type: string
+      Language:
+        type: string
+      IsMessageSent:
+        type: boolean
+      MessageSentDate:
+        format: int32
+        type: integer
+  GenerateReferralSMSBody:
+    type: object
+    properties:
+      LocationId:
+        type: string
+      LocationCode:
+        type: string
+      CustomerNameSurname:
+        type: string
+      CustomerPhone:
+        type: string
+      Language:
+        type: string
+      ReferralTemplateId:
+        type: string
+      ReferralTemplateCode:
+        type: string
+      CustomFieldList:
+        type: array
+        items:
+          $ref: '#/definitions/CustomField'
+  OrderRequestBody:
+    required:
+      - ExternalOrderId
+      - Products
+      - Customer
+      - TotalPrice
+      - Currency
+      - OrderedDate
+      - DeliveredDate
+      - OrderCancelationDate
+    description: With the Send Order endpoint we offer you, we aim to receive information such as the status of my current orders and their contents.
+    type: object
+    properties:
+      ExternalOrderId:
+        type: string
+      Products:
+        type: array
+        items:
+          $ref: '#/definitions/ExternalProduct'
+      Customer:
+        $ref: '#/definitions/ExternalCustomer'
+      LocationCode:
+        type: string
+      TotalPrice:
+        format: double
+        type: number
+      Currency:
+        type: string
+      PaymentStatus:
+        type: string
+      PaymentMethod:
+        type: string
+      OrderedDate:
+        format: date-time
+        type: string
+      DeliveredDate:
+        format: date-time
+        type: string
+      OrderCancelationDate:
+        format: date-time
+        type: string
+      OrderStatus:
+        format: int32
+        enum:
+          - 1
+          - 2
+          - 3
+          - 4
+        type: integer
+      OrderCancelationReason:
+        type: string
+  ExternalProduct:
+    required:
+      - ExternalProductId
+      - ProductName
+      - ProductCode
+      - ImageUrl
+    type: object
+    properties:
+      ExternalProductId:
+        type: string
+      ProductName:
+        type: string
+      ProductCode:
+        type: string
+      Language:
+        type: string
+      ImageUrl:
+        type: string
+  ExternalCustomer:
+    required:
+      - ExternalCustomerId
+      - Name
+      - SurName
+      - Email
+      - IsAcceptSendEmail
+      - IsAcceptSendSms
+    type: object
+    properties:
+      ExternalCustomerId:
+        type: string
+      Name:
+        type: string
+      SurName:
+        type: string
+      Email:
+        type: string
+      PhoneNumber:
+        type: string
+      IsAcceptSendEmail:
+        type: boolean
+      IsAcceptSendSms:
+        type: boolean
+  OrderUpdateRequestBody:
+    required:
+      - ExternalOrderId
+      - OrderStatus
+    type: object
+    properties:
+      ExternalOrderId:
+        type: string
+      OrderStatus:
+        format: int32
+        enum:
+          - 1
+          - 2
+          - 3
+          - 4
+        type: integer
+  ReviewListRequest:
+    type: object
+    properties:
+      PageSize:
+        format: int32
+        type: integer
+      PageIndex:
+        format: int32
+        type: integer
+      ReviewListFilter:
+        $ref: '#/definitions/ReviewListFilter'
+  ReviewListFilter:
+    type: object
+    properties:
+      Channel:
+        type: string
+      ReviewStartDate:
+        format: int32
+        type: integer
+      ReviewEndDate:
+        format: int32
+        type: integer
+      LocationId:
+        type: string
+      LocationCode:
+        type: string
+      ProductCode:
+        type: string
+      ReviewStatus:
+        type: string
+      ReviewStatusChangeStartDate:
+        format: int32
+        type: integer
+      ReviewStatusChangeEndDate:
+        format: int32
+        type: integer
+  ReviewListResult:
+    type: object
+    properties:
+      TotalPageCount:
+        format: int32
+        type: integer
+      TotalReviewCount:
+        format: int32
+        type: integer
+      CurrentPageIndex:
+        format: int32
+        type: integer
+      CurrentPageSize:
+        format: int32
+        type: integer
+      ReviewList:
+        type: array
+        items:
+          $ref: '#/definitions/Review'
+  Review:
+    type: object
+    properties:
+      ReviewId:
+        type: string
+      LocationCode:
+        type: string
+      LocationName:
+        type: string
+      ReviewChannel:
+        type: string
+      ExternalReviewId:
+        type: string
+      Rating:
+        format: int32
+        type: integer
+      RecommendationType:
+        type: string
+      Comment:
+        type: string
+      ProductCode:
+        type: string
+      ProductName:
+        type: string
+      ReviewerName:
+        type: string
+      ReviewerPhone:
+        type: string
+      ReviewerEmail:
+        type: string
+      ReviewImageList:
+        type: array
+        items:
+          type: string
+      ReviewCategoryOptionRatingList:
+        type: array
+        items:
+          $ref: '#/definitions/ReviewCategoryOptionRating'
+      ReviewerId:
+        type: string
+      ReviewDate:
+        format: int32
+        type: integer
+      ReviewUpdateDate:
+        format: int32
+        type: integer
+      ReviewCommentList:
+        type: array
+        items:
+          $ref: '#/definitions/ReviewComment'
+      CustomFieldList:
+        type: array
+        items:
+          $ref: '#/definitions/CustomField'
+      ReviewStatus:
+        type: string
+      ReviewStatusChangeDate:
+        format: int32
+        type: integer
+      ReviewArchiveOption:
+        $ref: '#/definitions/ReviewArchiveOption'
+  ReviewCategoryOptionRating:
+    type: object
+    properties:
+      ReviewCategoryOptionId:
+        type: string
+      Name:
+        type: string
+      Rating:
+        format: int32
+        type: integer
+  ReviewComment:
+    type: object
+    properties:
+      ReviewCommentId:
+        type: string
+      IsAdminReply:
+        type: boolean
+      IsAutoReply:
+        type: boolean
+      ReviewCommentExternalId:
+        type: string
+      ReviewCommentText:
+        type: string
+      ReviewCommenterName:
+        type: string
+      ReviewCommenterId:
+        type: string
+      ReviewCommentDate:
+        format: int32
+        type: integer
+  ReviewArchiveOption:
+    type: object
+    properties:
+      ReviewArchiveOptionId:
+        type: string
+      ReviewArchiveOptionName:
+        type: string
+      ReviewArchiveContent:
+        type: string
+  ReviewStatusRequest:
+    type: object
+    properties:
+      ReviewId:
+        type: string
+      Status:
+        type: string
+  ReviewStatusResponse:
+    type: object
+    properties:
+      ReviewId:
+        type: string
+      Status:
+        type: string
+      ResponseDate:
+        format: int32
+        type: integer
+  ReviewRequestTemplate:
+    type: object
+    properties:
+      ReviewRequestTemplateId:
+        type: string
+      ReviewRequestTemplateType:
+        format: int32
+        enum:
+          - 1
+          - 2
+        type: integer
+      TemplateName:
+        type: string
+      TemplateCode:
+        type: string
+      Language:
+        type: string
+      Content:
+        type: string
+      CreateDate:
+        format: int32
+        type: integer
+  ReferralTemplate:
+    type: object
+    properties:
+      ReferralTemplateId:
+        type: string
+      ReferralTemplateType:
+        format: int32
+        enum:
+          - 1
+          - 2
+        type: integer
+      TemplateName:
+        type: string
+      TemplateCode:
+        type: string
+      Language:
+        type: string
+      Content:
+        type: string
+      CreateDate:
+        format: int32
+        type: integer
