@@ -1,612 +1,1583 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
-    "title": "JETLINK API SERVICES",
-    "termsOfService": "https://example.com/terms/",
-    "contact": {
-      "email": "contact@example.com",
-      "url": "http://example.com/contact"
-    },
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-    },
-    "x-logo": {
-      "url": "https://avatars.githubusercontent.com/u/22540479?v=4"
-    },
-    "description": "This is a sample server Jetlink server.\nYou can find out more about Swagger at\n[http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).\nFor this sample, you can use the api key `special-key` to test the authorization filters.\n\n# Introduction\nThis API is documented in **OpenAPI format** and is based on\n[Jetlink sample](http://Jetlink.swagger.io/) provided by [swagger.io](http://swagger.io) team.\nIt was **extended** to illustrate features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)\ntool and [ReDoc](https://github.com/Redocly/redoc) documentation. In addition to standard\nOpenAPI syntax we use a few [vendor extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).\n\n# OpenAPI Specification\nThis API is documented in **OpenAPI format** and is based on\n[Jetlink sample](http://Jetlink.swagger.io/) provided by [swagger.io](http://swagger.io) team.\nIt was **extended** to illustrate features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)\ntool and [ReDoc](https://github.com/Redocly/redoc) documentation. In addition to standard\nOpenAPI syntax we use a few [vendor extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).\n\n# Cross-Origin Resource Sharing\nThis API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).\nAnd that allows cross-domain communication from the browser.\nAll responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.\n\n# Authentication\n\nJetlink offers two forms of authentication:\n  - API Key\n  - OAuth2\nOAuth2 - an open protocol to allow secure authorization in a simple\nand standard method from web, mobile and desktop applications\n<SecurityDefinitions />\n"
+    "version": "v1",
+    "title": "JetReview.Api"
   },
-  "externalDocs": {
-    "description": "Find out how to create a GitHub repo for your OpenAPI definition.",
-    "url": "https://github.com/Rebilly/generator-openapi-repo"
-  },
-  "tags": [
-    {
-      "name": "Echo",
-      "description": "Example echo operations."
-    },
-    {
-      "name": "User",
-      "description": "Operations about users."
-    },
-    {
-      "name": "Tag",
-      "description": "This is a tag description."
-    }
-  ],
-  "servers": [
-    {
-      "url": "http://example.com/api/v1"
-    },
-    {
-      "url": "https://example.com/api/v1"
-    }
+  "host": "localhost:44397",
+  "schemes": [
+    "https"
   ],
   "paths": {
-    "/users/{username}": {
-      "parameters": [
-        {
-          "name": "pretty_print",
-          "in": "query",
-          "description": "Pretty print response",
-          "schema": {
-            "type": "boolean"
+    "/Feedback/GetFeedbackList": {
+      "post": {
+        "tags": [
+          "Feedback"
+        ],
+        "operationId": "Feedback_GetFeedbackList",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "FeedbackListRequest",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FeedbackListRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/FeedbackListResult"
+            }
           }
         }
-      ],
+      }
+    },
+    "/Invite/GetInviteList": {
+      "post": {
+        "tags": [
+          "Invite"
+        ],
+        "operationId": "Invite_GetInviteList",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InviteListFilter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Invite"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Invite/CreateInvitePerson": {
+      "post": {
+        "tags": [
+          "Invite"
+        ],
+        "operationId": "Invite_CreateInvitePerson",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "invitePersonBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InvitePersonBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/InvitePersonResult"
+            }
+          }
+        }
+      }
+    },
+    "/Location/GetList": {
       "get": {
         "tags": [
-          "User"
+          "Location"
         ],
-        "summary": "Get user by user name",
-        "description": "Some description of the operation. test\nYou can use `markdown` here.\n",
-        "operationId": "getUserByName",
+        "operationId": "Location_GetList",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Location"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Message/GenerateSMSContent": {
+      "post": {
+        "tags": [
+          "Message"
+        ],
+        "operationId": "Message_GenerateSMSContent",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
         "parameters": [
           {
-            "name": "username",
-            "in": "path",
-            "description": "The name that needs to be fetched",
+            "name": "generateSMSBody",
+            "in": "body",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/GenerateSMSBody"
             }
-          },
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GenerateSMSResult"
+            }
+          }
+        }
+      }
+    },
+    "/Message/SendSMS": {
+      "post": {
+        "tags": [
+          "Message"
+        ],
+        "operationId": "Message_SendSMS",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
           {
-            "name": "with_email",
+            "name": "sendSMSBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GenerateSMSBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/SendSMSResult"
+            }
+          }
+        }
+      }
+    },
+    "/Message/GenerateReferralSMSContent": {
+      "post": {
+        "tags": [
+          "Message"
+        ],
+        "operationId": "Message_GenerateReferralSMSContent",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "generateReferralSMSBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GenerateReferralSMSBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GenerateSMSResult"
+            }
+          }
+        }
+      }
+    },
+    "/Message/SendReferralSMS": {
+      "post": {
+        "tags": [
+          "Message"
+        ],
+        "operationId": "Message_SendReferralSMS",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "sendReferralSMSBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GenerateReferralSMSBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/SendSMSResult"
+            }
+          }
+        }
+      }
+    },
+    "/Orders/SendOrder": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "operationId": "Orders_SendOrder",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrderRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transaction succesfully completed. The order datas are transferred.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/Orders/SendOrderUpdateStatus": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "operationId": "Orders_SendOrderUpdateStatus",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrderUpdateRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The order status updated succesfully.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/Review/GetReviewList": {
+      "post": {
+        "tags": [
+          "Review"
+        ],
+        "operationId": "Review_GetReviewList",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "reviewListRequest",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReviewListRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ReviewListResult"
+            }
+          }
+        }
+      }
+    },
+    "/Review/UpdateReviewStatus": {
+      "post": {
+        "tags": [
+          "Review"
+        ],
+        "operationId": "Review_UpdateReviewStatus",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "reviewStatusRequest",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReviewStatusRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ReviewStatusResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Settings/GetReviewRequestTemplateListByCompany": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "operationId": "Settings_GetReviewRequestTemplateListByCompany",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ReviewRequestTemplate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Settings/GetReviewRequestTemplateListByLocation": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "operationId": "Settings_GetReviewRequestTemplateListByLocation",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "locationId",
             "in": "query",
-            "description": "Filter users without email",
-            "schema": {
-              "type": "boolean"
-            }
-          }
-        ],
-        "security": [
-          {
-            "main_auth": [
-              "read:users"
-            ]
+            "required": true,
+            "type": "string"
           },
           {
-            "api_key": []
+            "name": "locationCode",
+            "in": "query",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                },
-                "example": {
-                  "username": "user1",
-                  "email": "user@example.com"
-                }
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ReviewRequestTemplate"
               }
             }
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "User not found"
           }
         }
-      },
-      "put": {
+      }
+    },
+    "/Settings/GetReferralTemplateListByCompany": {
+      "get": {
         "tags": [
-          "User"
+          "Settings"
         ],
-        "summary": "Updated user",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "updateUser",
+        "operationId": "Settings_GetReferralTemplateListByCompany",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ReferralTemplate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Settings/GetReferralTemplateListByLocation": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "operationId": "Settings_GetReferralTemplateListByLocation",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
         "parameters": [
           {
-            "name": "username",
-            "in": "path",
-            "description": "The name that needs to be updated",
+            "name": "locationId",
+            "in": "query",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locationCode",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
             "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "security": [
-          {
-            "main_auth": [
-              "write:users"
-            ]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Invalid user supplied"
-          },
-          "404": {
-            "description": "User not found"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          },
-          "description": "Updated user object",
-          "required": true
-        }
-      }
-    },
-    "/echo": {
-      "post": {
-        "tags": [
-          "Echo"
-        ],
-        "summary": "Echo test",
-        "description": "Receive the exact message you've sent",
-        "operationId": "echo",
-        "security": [
-          {
-            "api_key": []
-          },
-          {
-            "basic_auth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "X-Rate-Limit": {
-                "description": "calls per hour allowed by the user",
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              },
-              "X-Expires-After": {
-                "$ref": "#/components/headers/ExpiresAfter"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                },
-                "examples": {
-                  "response": {
-                    "value": "Hello world!"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/csv": {
-                "schema": {
-                  "type": "string"
-                }
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ReferralTemplate"
               }
             }
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "string",
-                "example": "Hello world!"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "type": "string",
-                "example": "Hello world!"
-              }
-            }
-          },
-          "description": "Echo payload",
-          "required": true
-        },
-        "x-codeSamples": [
-          {
-            "lang": "C#",
-            "source": "API.v1.Echo echo = new API.v1.Echo();\necho.message = \"Hello World!\");\nEchoResponse response = echo.post();\nif (response.statusCode == HttpStatusCode.Created)\n{\n  // Success\n}\nelse\n{\n  // Something wrong -- check response for errors\n  Console.WriteLine(response.getRawResponse());\n}\n"
-          },
-          {
-            "lang": "PHP",
-            "source": "$form = new APIEntitiesEcho();\n$form->setMessage(\"Hello World!\");\ntry {\n    $pet = $client->echo()->post($form);\n} catch (UnprocessableEntityException $e) {\n    var_dump($e->getErrors());\n}\n"
-          }
-        ]
-      }
-    },
-    "/pathItem": {
-      "post": {
-        "tags": [
-          "Tag"
-        ],
-        "summary": "Operation summary",
-        "description": "Operation description **markdown**.\n",
-        "operationId": "operationId",
-        "security": [
-          {
-            "api_key": []
-          },
-          {
-            "basic_auth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "X-Rate-Limit": {
-                "description": "Calls per hour allowed by the user.",
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              },
-              "X-Expires-After": {
-                "$ref": "#/components/headers/ExpiresAfter"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Schema"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Schema"
-              }
-            }
-          },
-          "description": "requestBody description",
-          "required": true
-        }
-      }
-    },
-    "/pathItemWithExamples": {
-      "post": {
-        "tags": [
-          "Tag"
-        ],
-        "summary": "Operation summary with examples",
-        "description": "Operation description **markdown**.\n",
-        "operationId": "postPathItemWithExamples",
-        "security": [
-          {
-            "api_key": []
-          },
-          {
-            "basic_auth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "X-Rate-Limit": {
-                "description": "calls per hour allowed by the user",
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              },
-              "X-Expires-After": {
-                "$ref": "#/components/headers/ExpiresAfter"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Schema"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Schema"
-              },
-              "examples": {
-                "mapName": {
-                  "summary": "My first example",
-                  "description": "My first example's description.",
-                  "value": {
-                    "stringProperty": "tada"
-                  }
-                },
-                "mapNameDoesNotShowInDocsUnlessSummaryIsNotProvided": {
-                  "value": {
-                    "stringProperty": "checkmark"
-                  }
-                }
-              }
-            }
-          },
-          "description": "requestBody description",
-          "required": true
         }
       }
     }
   },
-  "components": {
-    "securitySchemes": {
-      "main_auth": {
-        "type": "oauth2",
-        "flows": {
-          "implicit": {
-            "authorizationUrl": "http://example.com/api/oauth/dialog",
-            "scopes": {
-              "read:users": "read users info",
-              "write:users": "modify or remove users"
-            }
-          }
+  "definitions": {
+    "FeedbackListRequest": {
+      "type": "object",
+      "properties": {
+        "PageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "PageIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FeedbackListFilter": {
+          "$ref": "#/definitions/FeedbackListFilter"
         }
-      },
-      "api_key": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "api_key"
-      },
-      "basic_auth": {
-        "type": "http",
-        "scheme": "basic"
       }
     },
-    "schemas": {
-      "Email": {
-        "description": "User email address",
-        "type": "string",
-        "format": "test",
-        "example": "john.smith@example.com"
-      },
-      "User": {
-        "type": "object",
-        "properties": {
-          "username": {
-            "description": "User supplied username",
-            "type": "string",
-            "minLength": 4,
-            "example": "John78"
-          },
-          "firstName": {
-            "description": "User first name",
-            "type": "string",
-            "minLength": 1,
-            "example": "John"
-          },
-          "lastName": {
-            "description": "User last name",
-            "type": "string",
-            "minLength": 1,
-            "example": "Smith"
-          },
-          "email": {
-            "$ref": "#/components/schemas/Email"
-          }
+    "FeedbackListFilter": {
+      "type": "object",
+      "properties": {
+        "FeedbackValueExists": {
+          "type": "string"
+        },
+        "FeedbackStartDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FeedbackEndDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "LocationId": {
+          "type": "string"
+        },
+        "LocationCode": {
+          "type": "string"
         }
-      },
-      "Schema": {
-        "type": "object",
-        "title": "Scalars",
-        "properties": {
-          "stringProperty": {
-            "description": "Property name's description (type is string)1111",
-            "type": "string",
-            "example": "example"
-          },
-          "readOnlyStringProperty": {
-            "description": "Notice this only appears in the response.",
-            "type": "string",
-            "readOnly": true,
-            "example": "example"
-          },
-          "writeOnlyStringProperty": {
-            "description": "Notice this only appears in the request.",
-            "type": "string",
-            "writeOnly": true,
-            "example": "example"
-          },
-          "minLengthString": {
-            "description": "Property name's description (type is string)",
-            "type": "string",
-            "minLength": 4,
-            "example": "example"
-          },
-          "maxLengthString": {
-            "description": "Property name's description (type is string)",
-            "type": "string",
-            "maxLength": 140,
-            "example": "example"
-          },
-          "minAndMaxLengthString": {
-            "description": "Property name's description (type is string)",
-            "type": "string",
-            "minLength": 4,
-            "maxLength": 140,
-            "example": "example"
-          },
-          "stringEnumValues": {
-            "description": "Property name's description (type is string)",
-            "type": "string",
-            "enum": [
-              "sample",
-              "example",
-              "specimen",
-              "case",
-              "instance",
-              "illustration"
-            ]
-          },
-          "stringDateTime": {
-            "description": "Property name's description (type is string, format is date-time)",
-            "type": "string",
-            "format": "date-time"
-          },
-          "stringDate": {
-            "description": "Property name's description (type is string, format is date-time)",
-            "type": "string",
-            "format": "date"
-          },
-          "stringEmail": {
-            "description": "Property name's description (type is string, format is email)",
-            "type": "string",
-            "format": "email"
-          },
-          "stringIpAddressV4": {
-            "description": "Property name's description (type is string, format is ipv4 address)",
-            "type": "string",
-            "format": "ipv4"
-          },
-          "stringIpAddressV6": {
-            "description": "Property name's description (type is string, format is ipv6 address)",
-            "type": "string",
-            "format": "ipv6"
-          },
-          "stringPassword": {
-            "description": "Property name's description (type is string, format is password)",
-            "type": "string",
-            "format": "password"
-          },
-          "stringHostname": {
-            "description": "Property name's description (type is string, format is hostname)",
-            "type": "string",
-            "format": "hostname"
-          },
-          "stringUri": {
-            "description": "Property name's description (type is string, format is uri)",
-            "type": "string",
-            "format": "uri"
-          },
-          "stringUuid": {
-            "description": "Property name's description (type is string, format is uuid)",
-            "type": "string",
-            "format": "uuid"
-          },
-          "numberProperty": {
-            "description": "Property name's description (type is number)",
-            "type": "number",
-            "example": 8
-          },
-          "numberFloat": {
-            "description": "Property name's description (type is number, format is float)",
-            "type": "number",
-            "format": "float"
-          },
-          "numberDouble": {
-            "description": "Property name's description (type is number, format is double)",
-            "type": "number",
-            "format": "double"
-          },
-          "numberGreaterThanOrEquals": {
-            "description": "Property name's description (type is number)",
-            "type": "number",
-            "minimum": 5
-          },
-          "numberGreaterThan": {
-            "description": "Property name's description (type is number)",
-            "type": "number"
-          },
-          "numberLessThan": {
-            "description": "Property name's description (type is number)",
-            "type": "number"
-          },
-          "numberLessThanOrEquals": {
-            "description": "Property name's description (type is number)",
-            "type": "number",
-            "maximum": 8
-          },
-          "numberRange": {
-            "description": "Property name's description (type is number)",
-            "type": "number",
-            "minimum": 5,
-            "maximum": 8
-          },
-          "numberRangeExclusiveMaximum": {
-            "description": "Property name's description (type is number)",
-            "type": "number"
-          },
-          "numberRangeExclusiveMinimumAndMaximum": {
-            "description": "Property name's description (type is number)",
-            "type": "number"
-          },
-          "numberMultipleOf": {
-            "description": "Property name's description (type is number)",
-            "type": "number",
-            "multipleOf": 2
-          },
-          "integerType": {
-            "description": "Property name's description (type is integer)",
-            "type": "integer"
-          },
-          "integer32bit": {
-            "description": "Property name's description (type is integer, format is int32)",
-            "type": "integer",
-            "format": "int32"
-          },
-          "integer64bit": {
-            "description": "Property name's description (type is integer, format is int64)",
-            "type": "integer",
-            "format": "int64"
-          },
-          "booleanProperty": {
-            "description": "Property name's description (type is boolean)",
-            "type": "boolean"
+      }
+    },
+    "FeedbackListResult": {
+      "type": "object",
+      "properties": {
+        "TotalPageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "TotalFeedbackCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "CurrentPageIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "CurrentPageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FeedbackList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Feedback"
           }
         }
       }
     },
-    "headers": {
-      "ExpiresAfter": {
-        "description": "date in UTC when token expires",
-        "schema": {
+    "Feedback": {
+      "type": "object",
+      "properties": {
+        "FeedbackId": {
+          "type": "string"
+        },
+        "LocationCode": {
+          "type": "string"
+        },
+        "LocationName": {
+          "type": "string"
+        },
+        "Rating": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "InviteRating": {
+          "type": "string"
+        },
+        "Comment": {
+          "type": "string"
+        },
+        "IsContactRequested": {
+          "type": "boolean"
+        },
+        "CustomerNameSurname": {
+          "type": "string"
+        },
+        "CustomerPhone": {
+          "type": "string"
+        },
+        "CustomerEmail": {
+          "type": "string"
+        },
+        "FeedbackDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FeedbackCategoryOptionRatingList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FeedbackCategoryOptionRating"
+          }
+        },
+        "CustomFieldList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomField"
+          }
+        }
+      }
+    },
+    "FeedbackCategoryOptionRating": {
+      "type": "object",
+      "properties": {
+        "ReviewCategoryOptionId": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Rating": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "CustomField": {
+      "type": "object",
+      "properties": {
+        "Key": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "string"
+        }
+      }
+    },
+    "InviteListFilter": {
+      "type": "object",
+      "properties": {
+        "ResultType": {
+          "type": "string"
+        },
+        "RecordCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "RecordStartDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "RecordEndDate": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Invite": {
+      "type": "object",
+      "properties": {
+        "InviteCode": {
+          "type": "string"
+        },
+        "LocationName": {
+          "type": "string"
+        },
+        "LocationCode": {
+          "type": "string"
+        },
+        "SenderAgentId": {
+          "type": "string"
+        },
+        "SenderAgentName": {
+          "type": "string"
+        },
+        "NameSurname": {
+          "type": "string"
+        },
+        "Phone": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "MessageText": {
+          "type": "string"
+        },
+        "InviteShortLink": {
+          "type": "string"
+        },
+        "FirstClickDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "LastClickDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FeedbackClickDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "FeedbackClickType": {
+          "type": "string"
+        },
+        "CustomFieldList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomField"
+          }
+        },
+        "CreateDate": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "InvitePersonBody": {
+      "type": "object",
+      "properties": {
+        "LocationId": {
+          "type": "string"
+        },
+        "LocationCode": {
+          "type": "string"
+        },
+        "CustomerNameSurname": {
+          "type": "string"
+        },
+        "CustomerPhone": {
+          "type": "string"
+        },
+        "Language": {
+          "type": "string"
+        },
+        "ReviewRequestTemplateId": {
+          "type": "string"
+        },
+        "ReviewRequestTemplateCode": {
+          "type": "string"
+        },
+        "CustomFieldList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomField"
+          }
+        }
+      }
+    },
+    "InvitePersonResult": {
+      "type": "object",
+      "properties": {
+        "InviteCode": {
+          "type": "string"
+        },
+        "IsPersonCreated": {
+          "type": "boolean"
+        },
+        "PersonCreateErrorMessage": {
+          "type": "string"
+        },
+        "PersonCreateDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "IsMessageSent": {
+          "type": "boolean"
+        },
+        "MessageSentDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "LocationId": {
+          "type": "string"
+        },
+        "LocationName": {
+          "type": "string"
+        },
+        "CustomerNameSurname": {
+          "type": "string"
+        },
+        "CustomerPhone": {
+          "type": "string"
+        },
+        "MessageContent": {
+          "type": "string"
+        },
+        "ReviewLink": {
+          "type": "string"
+        },
+        "Language": {
+          "type": "string"
+        }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "properties": {
+        "LocationId": {
+          "type": "string"
+        },
+        "LocationName": {
+          "type": "string"
+        },
+        "LocationCode": {
+          "type": "string"
+        },
+        "Latitude": {
+          "type": "string"
+        },
+        "Longitude": {
+          "type": "string"
+        },
+        "Address": {
+          "type": "string"
+        },
+        "District": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "State": {
+          "type": "string"
+        },
+        "Country": {
+          "type": "string"
+        },
+        "PostalCode": {
+          "type": "string"
+        },
+        "Phone": {
+          "type": "string"
+        },
+        "ConnectedChannels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ChannelRatingList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChannelRating"
+          }
+        },
+        "CreateDate": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ChannelRating": {
+      "type": "object",
+      "properties": {
+        "ChannelName": {
+          "type": "string"
+        },
+        "ChannelRatingValue": {
+          "type": "string"
+        },
+        "ChannelReviewCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "GenerateSMSBody": {
+      "type": "object",
+      "properties": {
+        "LocationId": {
+          "type": "string"
+        },
+        "LocationCode": {
+          "type": "string"
+        },
+        "CustomerNameSurname": {
+          "type": "string"
+        },
+        "CustomerPhone": {
+          "type": "string"
+        },
+        "CustomerEmail": {
+          "type": "string"
+        },
+        "Language": {
+          "type": "string"
+        },
+        "ReviewRequestTemplateId": {
+          "type": "string"
+        },
+        "ReviewRequestTemplateCode": {
+          "type": "string"
+        },
+        "ReviewCategoryCode": {
+          "type": "string"
+        },
+        "CustomFieldList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomField"
+          }
+        }
+      }
+    },
+    "GenerateSMSResult": {
+      "type": "object",
+      "properties": {
+        "MessageId": {
+          "type": "string"
+        },
+        "LocationId": {
+          "type": "string"
+        },
+        "LocationName": {
+          "type": "string"
+        },
+        "CustomerNameSurname": {
+          "type": "string"
+        },
+        "CustomerPhone": {
+          "type": "string"
+        },
+        "MessageContent": {
+          "type": "string"
+        },
+        "Language": {
+          "type": "string"
+        },
+        "ReviewLink": {
+          "type": "string"
+        }
+      }
+    },
+    "SendSMSResult": {
+      "type": "object",
+      "properties": {
+        "MessageId": {
+          "type": "string"
+        },
+        "LocationId": {
+          "type": "string"
+        },
+        "LocationName": {
+          "type": "string"
+        },
+        "CustomerNameSurname": {
+          "type": "string"
+        },
+        "CustomerPhone": {
+          "type": "string"
+        },
+        "MessageContent": {
+          "type": "string"
+        },
+        "ReviewLink": {
+          "type": "string"
+        },
+        "Language": {
+          "type": "string"
+        },
+        "IsMessageSent": {
+          "type": "boolean"
+        },
+        "MessageSentDate": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "GenerateReferralSMSBody": {
+      "type": "object",
+      "properties": {
+        "LocationId": {
+          "type": "string"
+        },
+        "LocationCode": {
+          "type": "string"
+        },
+        "CustomerNameSurname": {
+          "type": "string"
+        },
+        "CustomerPhone": {
+          "type": "string"
+        },
+        "Language": {
+          "type": "string"
+        },
+        "ReferralTemplateId": {
+          "type": "string"
+        },
+        "ReferralTemplateCode": {
+          "type": "string"
+        },
+        "CustomFieldList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomField"
+          }
+        }
+      }
+    },
+    "OrderRequestBody": {
+      "required": [
+        "ExternalOrderId",
+        "Products",
+        "Customer",
+        "TotalPrice",
+        "Currency",
+        "OrderedDate",
+        "OrderStatus"
+      ],
+      "type": "object",
+      "properties": {
+        "ExternalOrderId": {
           "type": "string",
-          "format": "date-time"
+          "description": "Id information in your database of the order data you want to send",
+          "example": "123456"
+        },
+        "Products": {
+          "type": "array",
+          "description": "The product list in the order data you want to send",
+          "items": {
+            "$ref": "#/definitions/ExternalProduct"
+          }
+        },
+        "Customer": {
+          "type": "array",
+          "description": "Information of the ordering customer",
+          "$ref": "#/definitions/ExternalCustomer"
+        },
+        "LocationCode": {
+          "type": "string",
+          "description": "Location code of your company",
+          "example": "0010Cmp"
+        },
+        "TotalPrice": {
+          "format": "double",
+          "type": "number",
+          "description": "Total amount of the order"
+        },
+        "Currency": {
+          "type": "string",
+          "description": "Currency used in the order. You can send by choosing one of the sample currencies specified in the list. The string data to be sent must be one of the examples given in the list.",
+          "example": [
+            "TRY",
+            "USD",
+            "EUR",
+            "GBP",
+            "CAD",
+            "AUD",
+            "CHF"
+          ]
+        },
+        "PaymentStatus": {
+          "type": "string",
+          "description": "Information about the payment status of the order.",
+          "example": [
+            "Ordered",
+            "Pending",
+            "Paid",
+            "Canceled"
+          ]
+        },
+        "PaymentMethod": {
+          "type": "string",
+          "description": "Information about the payment method of the order. The string data to be sent must be one of the examples given in the list.",
+          "example": [
+            "Credit",
+            "Cash"
+          ]
+        },
+        "OrderedDate": {
+          "format": "int32",
+          "type": "integer",
+          "description": "Order creation date information. When sending, you should pay attention to the format as in the example.",
+          "example": 20221903
+        },
+        "DeliveredDate": {
+          "format": "int32",
+          "type": "integer",
+          "description": "The delivery date of the order. Can be null.",
+          "example": 20221907
+        },
+        "OrderCancelationDate": {
+          "format": "int32",
+          "type": "integer",
+          "description": "Order cancellation date information.",
+          "example": 20221905
+        },
+        "OrderStatus": {
+          "type": "string",
+          "description": "Order status information.The string data to be sent must be one of the examples given in the list.",
+          "example": [
+            "Ordered",
+            "Delivered",
+            "Shipping",
+            "Canceled",
+            "Pending"
+          ]
+        }
+      }
+    },
+    "ExternalProduct": {
+      "required": [
+        "ExternalProductId",
+        "ProductName",
+        "ProductCode",
+        "ImageUrl"
+      ],
+      "type": "object",
+      "properties": {
+        "ExternalProductId": {
+          "type": "string",
+          "example": "1234567",
+          "description": "ID number of the product data you sent to us"
+        },
+        "ProductName": {
+          "type": "string",
+          "description": "The name of the product data you want to send",
+          "example": "ProductName1"
+        },
+        "ProductCode": {
+          "type": "string",
+          "description": "The code of the product data you want to send",
+          "example": "123EXMP"
+        },
+        "Language": {
+          "type": "string",
+          "description": "The language of the data you want to send",
+          "example": "us-US || tr-TR"
+        },
+        "ImageUrl": {
+          "type": "string",
+          "description": "Picture of the product data you want to send",
+          "example": "pr1.jpg"
+        }
+      }
+    },
+    "ExternalCustomer": {
+      "required": [
+        "ExternalCustomerId",
+        "Name",
+        "Surname",
+        "Email",
+        "CanReceiveEmail",
+        "CanReceiveSms"
+      ],
+      "type": "object",
+      "properties": {
+        "ExternalCustomerId": {
+          "type": "string",
+          "description": "ID number of the customer for the order to be sent",
+          "example": 6543214
+        },
+        "Name": {
+          "type": "string",
+          "description": "Name of the customer for the order to be sent",
+          "example": "userName"
+        },
+        "Surname": {
+          "type": "string",
+          "description": "Last name of the customer for the order to be sent",
+          "example": "userSurname"
+        },
+        "Email": {
+          "type": "string",
+          "description": "Email address of the customer for the order to be sent",
+          "example": "user@exapmle.com"
+        },
+        "PhoneNumber": {
+          "type": "string",
+          "description": "Phone number of the customer for the order to be sent. (Optional)",
+          "example": 5555555555
+        },
+        "CanReceiveEmail": {
+          "type": "boolean",
+          "description": "Information that the customer of the order to be sent has approved the e-mail sending"
+        },
+        "CanReceiveSms": {
+          "type": "boolean",
+          "description": "Information that the customer of the order to be sent has approved the sms sending"
+        }
+      }
+    },
+    "OrderUpdateRequestBody": {
+      "required": [
+        "ExternalOrderId",
+        "OrderStatus"
+      ],
+      "type": "object",
+      "properties": {
+        "ExternalOrderId": {
+          "type": "string",
+          "description": "ID number of the order you want to update"
+        },
+        "OrderStatus": {
+          "type": "string",
+          "description": "Order status information.The string data to be sent must be one of the examples given in the list.",
+          "example": [
+            "Ordered",
+            "Delivered",
+            "Shipping",
+            "Canceled",
+            "Pending"
+          ]
+        }
+      }
+    },
+    "ReviewListRequest": {
+      "type": "object",
+      "properties": {
+        "PageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "PageIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ReviewListFilter": {
+          "$ref": "#/definitions/ReviewListFilter"
+        }
+      }
+    },
+    "ReviewListFilter": {
+      "type": "object",
+      "properties": {
+        "Channel": {
+          "type": "string"
+        },
+        "ReviewStartDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ReviewEndDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "LocationId": {
+          "type": "string"
+        },
+        "LocationCode": {
+          "type": "string"
+        },
+        "ProductCode": {
+          "type": "string"
+        },
+        "ReviewStatus": {
+          "type": "string"
+        },
+        "ReviewStatusChangeStartDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ReviewStatusChangeEndDate": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ReviewListResult": {
+      "type": "object",
+      "properties": {
+        "TotalPageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "TotalReviewCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "CurrentPageIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "CurrentPageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ReviewList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Review"
+          }
+        }
+      }
+    },
+    "Review": {
+      "type": "object",
+      "properties": {
+        "ReviewId": {
+          "type": "string"
+        },
+        "LocationCode": {
+          "type": "string"
+        },
+        "LocationName": {
+          "type": "string"
+        },
+        "ReviewChannel": {
+          "type": "string"
+        },
+        "ExternalReviewId": {
+          "type": "string"
+        },
+        "Rating": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "RecommendationType": {
+          "type": "string"
+        },
+        "Comment": {
+          "type": "string"
+        },
+        "ProductCode": {
+          "type": "string"
+        },
+        "ProductName": {
+          "type": "string"
+        },
+        "ReviewerName": {
+          "type": "string"
+        },
+        "ReviewerPhone": {
+          "type": "string"
+        },
+        "ReviewerEmail": {
+          "type": "string"
+        },
+        "ReviewImageList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ReviewCategoryOptionRatingList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReviewCategoryOptionRating"
+          }
+        },
+        "ReviewerId": {
+          "type": "string"
+        },
+        "ReviewDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ReviewUpdateDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ReviewCommentList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReviewComment"
+          }
+        },
+        "CustomFieldList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomField"
+          }
+        },
+        "ReviewStatus": {
+          "type": "string"
+        },
+        "ReviewStatusChangeDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ReviewArchiveOption": {
+          "$ref": "#/definitions/ReviewArchiveOption"
+        }
+      }
+    },
+    "ReviewCategoryOptionRating": {
+      "type": "object",
+      "properties": {
+        "ReviewCategoryOptionId": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Rating": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ReviewComment": {
+      "type": "object",
+      "properties": {
+        "ReviewCommentId": {
+          "type": "string"
+        },
+        "IsAdminReply": {
+          "type": "boolean"
+        },
+        "IsAutoReply": {
+          "type": "boolean"
+        },
+        "ReviewCommentExternalId": {
+          "type": "string"
+        },
+        "ReviewCommentText": {
+          "type": "string"
+        },
+        "ReviewCommenterName": {
+          "type": "string"
+        },
+        "ReviewCommenterId": {
+          "type": "string"
+        },
+        "ReviewCommentDate": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ReviewArchiveOption": {
+      "type": "object",
+      "properties": {
+        "ReviewArchiveOptionId": {
+          "type": "string"
+        },
+        "ReviewArchiveOptionName": {
+          "type": "string"
+        },
+        "ReviewArchiveContent": {
+          "type": "string"
+        }
+      }
+    },
+    "ReviewStatusRequest": {
+      "type": "object",
+      "properties": {
+        "ReviewId": {
+          "type": "string"
+        },
+        "Status": {
+          "type": "string"
+        }
+      }
+    },
+    "ReviewStatusResponse": {
+      "type": "object",
+      "properties": {
+        "ReviewId": {
+          "type": "string"
+        },
+        "Status": {
+          "type": "string"
+        },
+        "ResponseDate": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ReviewRequestTemplate": {
+      "type": "object",
+      "properties": {
+        "ReviewRequestTemplateId": {
+          "type": "string"
+        },
+        "ReviewRequestTemplateType": {
+          "format": "int32",
+          "enum": [
+            1,
+            2
+          ],
+          "type": "integer"
+        },
+        "TemplateName": {
+          "type": "string"
+        },
+        "TemplateCode": {
+          "type": "string"
+        },
+        "Language": {
+          "type": "string"
+        },
+        "Content": {
+          "type": "string"
+        },
+        "CreateDate": {
+          "description": "it is created date",
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ReferralTemplate": {
+      "type": "object",
+      "properties": {
+        "ReferralTemplateId": {
+          "type": "string"
+        },
+        "ReferralTemplateType": {
+          "format": "int32",
+          "enum": [
+            1,
+            2
+          ],
+          "type": "integer"
+        },
+        "TemplateName": {
+          "type": "string"
+        },
+        "TemplateCode": {
+          "type": "string"
+        },
+        "Language": {
+          "type": "string"
+        },
+        "Content": {
+          "type": "string"
+        },
+        "CreateDate": {
+          "format": "int32",
+          "type": "integer"
         }
       }
     }
