@@ -330,17 +330,20 @@
         },
         "responses": {
           "200": {
-            "description": "Transaction succesfully completed. The order datas are transferred.",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "example": "Transaction completed successfully"
+                  "description": "Transaction succesfully completed. The order datas are transferred.",
+                  "example": "Order updated succesfully"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "object"
+                  "type": "string",
+                  "example": "Transaction completed successfully",
+                  "description": "Transaction succesfully completed. The order datas are transferred."
                 }
               }
             }
@@ -398,12 +401,13 @@
         },
         "responses": {
           "200": {
-            "description": "The order status updated succesfully.",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "example": "Transaction completed successfully"
+                  "example": "Order updated succesfully.",
+                  "description": "Transaction completed successfully"
                 }
               },
               "text/json": {
