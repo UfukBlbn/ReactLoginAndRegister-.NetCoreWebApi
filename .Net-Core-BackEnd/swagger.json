@@ -9,13 +9,13 @@
       "url": "http://example.com/contact"
     },
     "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      "name": ".Net 5.0",
+      "url": "https://docs.microsoft.com/tr-tr/dotnet/welcome"
     },
     "x-logo": {
       "url": "https://avatars.githubusercontent.com/u/22540479?v=4"
     },
-    "description": "This is a sample server Jetlink server.\nYou can find out more about Swagger at\n[http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).\nFor this sample, you can use the api key `special-key` to test the authorization filters.\n\n# Introduction\nThis API is documented in **OpenAPI format** and is based on\n[Jetlink sample](http://Jetlink.swagger.io/) provided by [swagger.io](http://swagger.io) team.\nIt was **extended** to illustrate features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)\ntool and [ReDoc](https://github.com/Redocly/redoc) documentation. In addition to standard\nOpenAPI syntax we use a few [vendor extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).\n\n# OpenAPI Specification\nThis API is documented in **OpenAPI format** and is based on\n[Jetlink sample](http://Jetlink.swagger.io/) provided by [swagger.io](http://swagger.io) team.\nIt was **extended** to illustrate features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)\ntool and [ReDoc](https://github.com/Redocly/redoc) documentation. In addition to standard\nOpenAPI syntax we use a few [vendor extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).\n\n# Cross-Origin Resource Sharing\nThis API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).\nAnd that allows cross-domain communication from the browser.\nAll responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.\n\n# Authentication\n\nJetlink offers two forms of authentication:\n  - API Key\n  - OAuth2\nOAuth2 - an open protocol to allow secure authorization in a simple\nand standard method from web, mobile and desktop applications\n<SecurityDefinitions />\n"
+    "description": "This is a Jetlink Api Documentation.\nYou can find out more about Jetlink Company from\n[https://www.jetlink.io/](https://www.jetlink.io/) or on [Jetlink Github](https://github.com/jetlinkio).\n\n# Introduction\nThis API is documented in **OpenAPI format** and is based on\n[Jetlink sample](http://Jetlink.swagger.io/) provided by [swagger.io](http://swagger.io) team.\nIt was **extended** to illustrate features of [generator-openapi-repo](https://github.com/jetlinkio)\ntool and [Jetlink](https://github.com/Redocly/redoc) documentation. In addition to standard\nOpenAPI syntax we use a few [Documentation](https://public.jetlink.io/files/v3.json).\n\n# OpenAPI Specification\nThis API is documented in **OpenAPI format** and is based on\n[Jetlink sample](http://Jetlink.swagger.io/) provided by [swagger.io](http://swagger.io) team.\nIt was **extended** to illustrate features of [generator-openapi-repo](https://github.com/jetlinkio)\ntool and [Jetlink](https://github.com/Redocly/redoc) documentation. In addition to standard\nOpenAPI syntax we use a few [Documentation](https://public.jetlink.io/files/v3.json).\n\n# Cross-Origin Resource Sharing\nThis API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).\nAnd that allows cross-domain communication from the browser.\nAll responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.\n\n# Authentication\n\nJetlink offers two forms of authentication:\n  - API Key\n  - OAuth2\nOAuth2 - an open protocol to allow secure authorization in a simple\nand standard method from web, mobile and desktop applications\n<SecurityDefinitions />\n"
   },
   "paths": {
     "/Feedback/GetFeedbackList": {
@@ -349,12 +349,13 @@
             "description": "Unauthorized"
           },
           "417": {
-            "description": "This error will occur if there is an incomplete submission from the required fields or if the data sent does not have a counterpart in our Database.",
+            "description": "Expectation Failed.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "example": "Message 'LocationCode is not found!'"
+                  "example": "Message 'LocationCode is not found!'",
+                  "description": "This error will occur if there is an incomplete submission from the required fields or if the data sent does not have a counterpart in our Database"
                 }
               }
             }
@@ -410,12 +411,13 @@
             "description": "Unauthorized"
           },
           "417": {
-            "description": "This error will occur if there is an incomplete submission from the required fields or if the data sent does not have a counterpart in our Database.",
+            "description": "Expectation Failed.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "example": "Message 'ExternalOrderId is not found!'"
+                  "example": "Message 'ExternalOrderId is not found!'",
+                  "description": "This error will occur if there is an incomplete submission from the required fields or if the data sent does not have a counterpart in our Database"
                 }
               }
             }
@@ -1275,12 +1277,12 @@
           },
           "PaymentStatus": {
             "type": "string",
-            "description": "Information about the payment status of the order.  Choose one of them `Ordered`,`Pending`,`Paid`,`Canceled`",
+            "description": "Information about the payment status of the order. Example data values `Ordered`,`Pending`,`Paid`,`Canceled`",
             "example": "Ordered"
           },
           "PaymentMethod": {
             "type": "string",
-            "description": "Information about the payment method of the order. The string data to be sent must be one of the examples given in the list. Choose one of them `Credit`,`Cash`",
+            "description": "Information about the payment method of the order. The string data to be sent must be one of the examples given in the list. Example data values `Credit`,`Cash`",
             "example": "Credit"
           },
           "OrderedDate": {
@@ -1303,14 +1305,8 @@
           },
           "OrderStatus": {
             "type": "string",
-            "description": "Order status information.The string data to be sent must be one of the examples given in the list. Whic are `Pending`,`Shipping`,`Ordered`,`Delivered`,`Canceled`",
-            "example": [
-              "Ordered",
-              "Delivered",
-              "Shipping",
-              "Canceled",
-              "Pending"
-            ]
+            "description": "Order status information.The string data to be sent must be one of the examples given in the list. Example data values `Pending`,`Shipping`,`Ordered`,`Delivered`,`Canceled`",
+            "example": "Ordered"
           }
         }
       },
@@ -1341,10 +1337,7 @@
           "Language": {
             "type": "string",
             "description": "The language of the data you want to send",
-            "example": [
-              "us-US",
-              "tr-TR"
-            ]
+            "example": "tr-TR"
           },
           "ImageUrl": {
             "type": "string",
@@ -1412,14 +1405,8 @@
           },
           "OrderStatus": {
             "type": "string",
-            "description": "Order status information.The string data to be sent must be one of the examples given in the list.",
-            "example": [
-              "Ordered",
-              "Delivered",
-              "Shipping",
-              "Canceled",
-              "Pending"
-            ]
+            "description": "Order status information.The string data to be sent must be one of the examples given in the list. Example data values `Delivered`,`Pending`,`Canceled`,`Shipping`,`Ordered`.",
+            "example": "Ordered"
           }
         }
       },
