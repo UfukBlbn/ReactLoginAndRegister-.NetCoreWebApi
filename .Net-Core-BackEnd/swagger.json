@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
     "version": "1.0.0",
     "title": "JETLINK API SERVICES",
@@ -17,31 +17,9 @@
     },
     "description": "This is a sample server Jetlink server.\nYou can find out more about Swagger at\n[http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).\nFor this sample, you can use the api key `special-key` to test the authorization filters.\n\n# Introduction\nThis API is documented in **OpenAPI format** and is based on\n[Jetlink sample](http://Jetlink.swagger.io/) provided by [swagger.io](http://swagger.io) team.\nIt was **extended** to illustrate features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)\ntool and [ReDoc](https://github.com/Redocly/redoc) documentation. In addition to standard\nOpenAPI syntax we use a few [vendor extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).\n\n# OpenAPI Specification\nThis API is documented in **OpenAPI format** and is based on\n[Jetlink sample](http://Jetlink.swagger.io/) provided by [swagger.io](http://swagger.io) team.\nIt was **extended** to illustrate features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)\ntool and [ReDoc](https://github.com/Redocly/redoc) documentation. In addition to standard\nOpenAPI syntax we use a few [vendor extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).\n\n# Cross-Origin Resource Sharing\nThis API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).\nAnd that allows cross-domain communication from the browser.\nAll responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.\n\n# Authentication\n\nJetlink offers two forms of authentication:\n  - API Key\n  - OAuth2\nOAuth2 - an open protocol to allow secure authorization in a simple\nand standard method from web, mobile and desktop applications\n<SecurityDefinitions />\n"
   },
-  "externalDocs": {
-    "description": "Find out how to create a GitHub repo for your OpenAPI definition.",
-    "url": "https://github.com/Rebilly/generator-openapi-repo"
-  },
-  "tags": [
-    {
-      "name": "Echo",
-      "description": "Example echo operations."
-    },
-    {
-      "name": "User",
-      "description": "Operations about users."
-    },
-    {
-      "name": "Tag",
-      "description": "This is a tag description."
-    }
-  ],
-  "servers": [
-    {
-      "url": "http://example.com/api/v1"
-    },
-    {
-      "url": "https://example.com/api/v1"
-    }
+  "host": "localhost:44397",
+  "schemes": [
+    "https"
   ],
   "paths": {
     "/Feedback/GetFeedbackList": {
@@ -1144,7 +1122,7 @@
         },
         "PaymentStatus": {
           "type": "string",
-          "description": "Information about the payment status of the order.",
+          "description": "Information about the payment status of the order.  Choose one of them `Ordered`,`Pending`,`Paid`,`Canceled`",
           "example": [
             "Ordered",
             "Pending",
@@ -1154,7 +1132,7 @@
         },
         "PaymentMethod": {
           "type": "string",
-          "description": "Information about the payment method of the order. The string data to be sent must be one of the examples given in the list.",
+          "description": "Information about the payment method of the order. The string data to be sent must be one of the examples given in the list. Choose one of them `Credit`,`Cash`",
           "example": [
             "Credit",
             "Cash"
@@ -1180,7 +1158,7 @@
         },
         "OrderStatus": {
           "type": "string",
-          "description": "Order status information.The string data to be sent must be one of the examples given in the list.",
+          "description": "Order status information.The string data to be sent must be one of the examples given in the list. Whic are `Pending`,`Shipping`,`Ordered`,`Delivered`,`Canceled`",
           "example": [
             "Ordered",
             "Delivered",
