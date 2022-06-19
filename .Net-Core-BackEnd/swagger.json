@@ -1,12 +1,47 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
-    "version": "v1",
-    "title": "JetReview.Api"
+    "version": "1.0.0",
+    "title": "JETLINK API SERVICES",
+    "termsOfService": "https://example.com/terms/",
+    "contact": {
+      "email": "contact@example.com",
+      "url": "http://example.com/contact"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "x-logo": {
+      "url": "https://avatars.githubusercontent.com/u/22540479?v=4"
+    },
+    "description": "This is a sample server Jetlink server.\nYou can find out more about Swagger at\n[http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).\nFor this sample, you can use the api key `special-key` to test the authorization filters.\n\n# Introduction\nThis API is documented in **OpenAPI format** and is based on\n[Jetlink sample](http://Jetlink.swagger.io/) provided by [swagger.io](http://swagger.io) team.\nIt was **extended** to illustrate features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)\ntool and [ReDoc](https://github.com/Redocly/redoc) documentation. In addition to standard\nOpenAPI syntax we use a few [vendor extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).\n\n# OpenAPI Specification\nThis API is documented in **OpenAPI format** and is based on\n[Jetlink sample](http://Jetlink.swagger.io/) provided by [swagger.io](http://swagger.io) team.\nIt was **extended** to illustrate features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)\ntool and [ReDoc](https://github.com/Redocly/redoc) documentation. In addition to standard\nOpenAPI syntax we use a few [vendor extensions](https://github.com/Redocly/redoc/blob/master/docs/redoc-vendor-extensions.md).\n\n# Cross-Origin Resource Sharing\nThis API features Cross-Origin Resource Sharing (CORS) implemented in compliance with  [W3C spec](https://www.w3.org/TR/cors/).\nAnd that allows cross-domain communication from the browser.\nAll responses have a wildcard same-origin which makes them completely public and accessible to everyone, including any code on any site.\n\n# Authentication\n\nJetlink offers two forms of authentication:\n  - API Key\n  - OAuth2\nOAuth2 - an open protocol to allow secure authorization in a simple\nand standard method from web, mobile and desktop applications\n<SecurityDefinitions />\n"
   },
-  "host": "localhost:44397",
-  "schemes": [
-    "https"
+  "externalDocs": {
+    "description": "Find out how to create a GitHub repo for your OpenAPI definition.",
+    "url": "https://github.com/Rebilly/generator-openapi-repo"
+  },
+  "tags": [
+    {
+      "name": "Echo",
+      "description": "Example echo operations."
+    },
+    {
+      "name": "User",
+      "description": "Operations about users."
+    },
+    {
+      "name": "Tag",
+      "description": "This is a tag description."
+    }
+  ],
+  "servers": [
+    {
+      "url": "http://example.com/api/v1"
+    },
+    {
+      "url": "https://example.com/api/v1"
+    }
   ],
   "paths": {
     "/Feedback/GetFeedbackList": {
